@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
+import { OrbitControls } from '@react-three/drei';
 
 interface PointCloudProps {
   points: number[];
@@ -11,11 +12,9 @@ const PointCloud: React.FC<PointCloudProps> = ({ points }) => {
     const positionArray = new Float32Array(points);
     return new THREE.BufferAttribute(positionArray, 3);
   }, [points]);
-
   return (
     <Canvas>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
+      <OrbitControls enableZoom={false} />
       <points>
         <bufferGeometry>
           <bufferAttribute
